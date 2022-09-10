@@ -19,7 +19,7 @@
     margin-top: 50px;
 
     .box {
-      form {
+      .form {
         padding: 50px;
         display: flex;
 
@@ -31,6 +31,18 @@
             font-weight: 600;
             margin-bottom: 10px;
             display: block;
+          }
+        }
+
+        .inverse-button {
+          height: 100%;
+          align-self: end;
+          margin-bottom: 5px;
+          margin-left: 5px;
+          margin-right: 5px;
+
+          button {
+            background-color: $color_white;
           }
         }
       }

@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "../../components/Box";
 import translate from "../../constants/translate";
 import PageLayout from "../../layouts/Page";

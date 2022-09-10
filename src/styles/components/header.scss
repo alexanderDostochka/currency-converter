@@ -13,9 +13,67 @@ header {
     align-items: center;
     justify-content: space-between;
 
-    svg {
-      width: 185px;
-      height: 35px;
+    .left {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        opacity: 0.7;
+        transition: 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        svg {
+          height: 35px;
+        }
+      }
+
+      nav {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+
+        a {
+          color: $color_white;
+          opacity: 0.7;
+          text-decoration: none;
+          margin-left: 15px;
+          padding: 8px;
+          background: transparent;
+          border-radius: $box_radius;
+
+          &:hover {
+            background: rgba($color_white, 0.12);
+          }
+
+          &.active {
+            opacity: 1;
+            background: rgba($color_white, 0.12);
+          }
+        }
+      }
+    }
+
+    .input__control {
+      background: transparent;
+      border: 0 !important;
+
+      .input__placeholder {
+        color: $color_white;
+        opacity: 0.7;
+      }
+
+      .input__indicator-separator {
+        opacity: 0.7;
+      }
+
+      .input__single-value {
+        color: $color_white;
+        opacity: 0.7;
+      }
     }
   }
 

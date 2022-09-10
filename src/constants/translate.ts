@@ -1,6 +1,10 @@
 // For the test version, I used constants for translation instead of i18n.
 
 const translation = {
+  routes: {
+    home: "Converter",
+    exchangeRates: "Exchange rates"
+  },
   home: {
     title: "Currency converter",
     description:

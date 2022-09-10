@@ -1,7 +1,7 @@
 .input, .input__control  {
   width: 100%;
   border: 1px solid $color_border !important;
-  border-radius: 6px;
+  border-radius: $box_radius;
   box-shadow: rgb(0 17 51 / 5%) 0px 3px 15px !important;
   padding: 13px;
   outline: none;

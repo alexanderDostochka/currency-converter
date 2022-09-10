@@ -1,22 +1,26 @@
+import _ from "lodash";
 import { memo } from "react";
-import ReactSelect from "react-select";
+import ReactSelect, { SingleValue } from "react-select";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+interface SelectInterface {
+  options: Array<object>;
+  defaultValue?: Object;
+  value?: Object;
+  onChange?: (e: SingleValue<any>) => void;
+}
 
-const Select = () => {
-  const styles = {
-    control: (base: any) => ({}),
-  };
-
+const Select = ({
+  options = [],
+  defaultValue = {},
+  value = {},
+  onChange = _.noop,
+}: SelectInterface) => {
   return (
     <ReactSelect
+      value={value}
+      onChange={onChange}
       classNamePrefix="input"
-    //   styles={styles}
-      
+      defaultValue={defaultValue}
       options={options}
     />
   );

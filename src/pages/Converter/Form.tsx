@@ -1,7 +1,6 @@
 import CurrencyInput from "react-currency-input-field";
 import Button from "../../components/Button";
 import Select from "../../components/Select";
-import { currency } from "../../constants/currency";
 import translation from "../../constants/translate";
 import { ReactComponent as InverseSVG } from "../../svg/inverse.svg";
 import {
@@ -10,16 +9,20 @@ import {
   changeAmount,
   changeFrom,
   changeTo,
+  convertAsync,
 } from "../../redux/features/currencySlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import _ from "lodash";
+import { filterSelectCurrency } from "../../helpers/currencyFilter";
+import { useEffect } from "react";
 
 const FormConverter = () => {
   const currentCurrency = useAppSelector(selectCurrency);
   const dispatch = useAppDispatch();
 
-  const filterSelectCurrency = (selectedCurrency: Object | undefined) =>
-    _.filter(currency, (item) => !_.isEqual(selectedCurrency, item));
+  useEffect(() => {
+    dispatch(convertAsync(currentCurrency.amount));
+  }, []);
 
   return (
     <div className="form">
@@ -37,14 +40,21 @@ const FormConverter = () => {
       <div className="form-group">
         <label>{translation.home.inputs.lables.from}</label>
         <Select
-          onChange={(valueObject) => dispatch(changeFrom(valueObject))}
+          onChange={(valueObject) => {
+            dispatch(changeFrom(valueObject));
+          }}
           value={currentCurrency.from}
           defaultValue={currentCurrency.from}
           options={filterSelectCurrency(currentCurrency.to)}
         />
       </div>
       <div className="inverse-button">
-        <Button onClick={() => dispatch(inverse())}>
+        <Button
+          onClick={() => {
+            dispatch(inverse());
+            dispatch(convertAsync(currentCurrency.amount));
+          }}
+        >
           <InverseSVG />
         </Button>
       </div>

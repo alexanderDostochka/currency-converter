@@ -1,4 +1,4 @@
-import { currency } from "../../constants/currency";
+import { filterSelectCurrency } from "../../helpers/currencyFilter";
 import { changeFrom, selectCurrency } from "../../redux/features/currencySlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ReactComponent as LogoSVG } from "../../svg/logo.svg";
@@ -22,7 +22,7 @@ const Header = () => {
           onChange={(valueObject) => dispatch(changeFrom(valueObject))}
           value={currentCurrency.from}
           defaultValue={currentCurrency.from}
-          options={currency}
+          options={filterSelectCurrency(currentCurrency.to)}
         />
       </div>
     </header>

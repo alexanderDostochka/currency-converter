@@ -1,19 +1,39 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import _ from "lodash";
 import { currency } from "../../constants/currency";
+import { fetchCurrencyConvert } from "../../apilayer";
 
 export interface CurrencyState {
   from: Object | undefined;
   to: Object | undefined;
   amount: number;
+  loader: boolean;
+  result: any;
 }
 
 const initialState: CurrencyState = {
   from: _.first(currency),
   to: _.last(currency),
   amount: 1,
+  loader: true,
+  result: {},
 };
+
+export const convertAsync = createAsyncThunk(
+  "currency/fetchCurrencyConvert",
+  async (amount: number, { getState }) => {
+    const state: any = getState();
+    
+    const response = await fetchCurrencyConvert(
+      state.currency.from.value,
+      state.currency.to.value,
+      amount
+    );
+
+    return response.data;
+  }
+);
 
 export const currencySlice = createSlice({
   name: "currency",
@@ -28,10 +48,6 @@ export const currencySlice = createSlice({
     },
     changeFrom: (state, action: PayloadAction<object>) => {
       state.from = action.payload;
-
-      if (_.isEqual(action.payload, state.to)) {
-        state.to = _.first(_.filter(currency, (item) => !_.isEqual(action.payload, item)));
-      }
     },
     changeTo: (state, action: PayloadAction<object>) => {
       state.to = action.payload;
@@ -39,6 +55,19 @@ export const currencySlice = createSlice({
     changeAmount: (state, action: PayloadAction<number>) => {
       state.amount = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(convertAsync.pending, (state) => {
+        state.loader = true;
+      })
+      .addCase(convertAsync.fulfilled, (state, action) => {
+        state.loader = false;
+        state.result = action.payload;
+      })
+      .addCase(convertAsync.rejected, (state) => {
+        state.loader = false;
+      });
   },
 });
 

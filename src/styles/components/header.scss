@@ -28,6 +28,11 @@ header {
 
         svg {
           height: 35px;
+
+          @include phone {
+            height: 24px;
+            width: 24px;
+          }
         }
       }
 
@@ -35,6 +40,11 @@ header {
         margin-left: 15px;
         display: flex;
         align-items: center;
+
+        
+        @include phone {
+          margin-left: 3px;
+        }
 
         a {
           color: $color_white;

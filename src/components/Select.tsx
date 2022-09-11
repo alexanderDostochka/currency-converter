@@ -17,6 +17,7 @@ const Select = ({
 }: SelectInterface) => {
   return (
     <ReactSelect
+      isSearchable={false}
       value={value}
       onChange={onChange}
       classNamePrefix="input"

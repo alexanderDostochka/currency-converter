@@ -4,30 +4,33 @@ import Select from "../../components/Select";
 import translation from "../../constants/translate";
 import { ReactComponent as InverseSVG } from "../../svg/inverse.svg";
 import {
-  selectCurrency,
   inverse,
   changeAmount,
   changeFrom,
   changeTo,
   convertAsync,
+  CurrencyState,
 } from "../../redux/features/currencySlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import _ from "lodash";
 import { filterSelectCurrency } from "../../helpers/currencyFilter";
 import { useEffect } from "react";
 
-const FormConverter = () => {
-  const currentCurrency = useAppSelector(selectCurrency);
+interface FormConverterInterface {
+  currentCurrency: CurrencyState;
+}
+
+const FormConverter = ({ currentCurrency }: FormConverterInterface) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(convertAsync(currentCurrency.amount));
+    dispatch(convertAsync());
   }, []);
 
-  const convertDebounced = _.debounce(
-    () => dispatch(convertAsync(currentCurrency.amount)),
-    300
-  );
+  const convertDebounced = _.debounce(() => dispatch(convertAsync()), 1000, {
+    trailing: true,
+    leading: false,
+  });
 
   const onValueChange = (value: string | undefined) => {
     dispatch(changeAmount(Number(value)));
@@ -53,6 +56,7 @@ const FormConverter = () => {
         <Select
           onChange={(valueObject) => {
             dispatch(changeFrom(valueObject));
+            dispatch(convertAsync());
           }}
           value={currentCurrency.from}
           defaultValue={currentCurrency.from}
@@ -63,7 +67,7 @@ const FormConverter = () => {
         <Button
           onClick={() => {
             dispatch(inverse());
-            dispatch(convertAsync(currentCurrency.amount));
+            dispatch(convertAsync());
           }}
         >
           <InverseSVG />
@@ -72,7 +76,10 @@ const FormConverter = () => {
       <div className="form-group">
         <label>{translation.home.inputs.lables.to}</label>
         <Select
-          onChange={(valueObject) => dispatch(changeTo(valueObject))}
+          onChange={(valueObject) => {
+            dispatch(changeTo(valueObject));
+            dispatch(convertAsync());
+          }}
           value={currentCurrency.to}
           defaultValue={currentCurrency.to}
           options={filterSelectCurrency(currentCurrency.from)}

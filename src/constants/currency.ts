@@ -1,16 +1,16 @@
 export const currency = [
     {
-        value: "uah",
+        value: "UAH",
         label: "UAH - Ukrainian Hryvnia",
         symbol: "₴"
     },
     {
-        value: "eur",
+        value: "EUR",
         label: "EUR - Euro",
         symbol: "€"
     },
     {
-        value: "usd",
+        value: "USD",
         label: "USD - US Dollar",
         symbol: "$"
     }

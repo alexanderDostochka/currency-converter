@@ -1,5 +1,9 @@
 import { filterSelectCurrency } from "../../helpers/currencyFilter";
-import { changeFrom, selectCurrency } from "../../redux/features/currencySlice";
+import {
+  changeFrom,
+  convertAsync,
+  selectCurrency,
+} from "../../redux/features/currencySlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ReactComponent as LogoSVG } from "../../svg/logo.svg";
 import Select from "../Select";
@@ -19,7 +23,10 @@ const Header = () => {
           <Navigation />
         </div>
         <Select
-          onChange={(valueObject) => dispatch(changeFrom(valueObject))}
+          onChange={(valueObject) => {
+            dispatch(changeFrom(valueObject));
+            dispatch(convertAsync());
+          }}
           value={currentCurrency.from}
           defaultValue={currentCurrency.from}
           options={filterSelectCurrency(currentCurrency.to)}

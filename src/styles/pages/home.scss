@@ -19,8 +19,46 @@
     margin-top: 50px;
 
     .box {
+      .convert-result {
+        padding: 0px 50px 20px 50px;
+
+        .result-from {
+          font-size: 1rem;
+          color: $color_text;
+          font-weight: 600;
+          opacity: 0.8;
+          margin-bottom: 5px;
+        }
+
+        .result-to {
+          font-size: 1.8rem;
+          color: $color_green;
+          font-weight: 600;
+          opacity: 0.8;
+        }
+
+        .result-rates {
+          div {
+            color: $color_text;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            opacity: 0.6;
+          }
+        }
+
+        .result-date {
+          color: $color_text;
+          text-align: end;
+          font-size: 0.6rem;
+          font-weight: 700;
+          margin-top: 20px;
+          opacity: 0.6;
+        }
+      }
+
       .form {
-        padding: 50px;
+        padding: 50px 50px 20px 50px;
         display: flex;
 
         .form-group {
@@ -33,7 +71,7 @@
             right: 25px;
             top: 35px;
           }
-          
+
           label {
             font-weight: 600;
             margin-bottom: 10px;

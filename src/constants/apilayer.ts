@@ -1,1 +1,1 @@
-export const API_LAYER_KEY = "rsOI8XEX8hoX0p62FTkYVqUBcBWY6X21";
+export const API_LAYER_KEY = "e8w0t9IYawc90caEkQ2LIYXBeLmP4YfE";

@@ -22,13 +22,13 @@ const initialState: CurrencyState = {
 
 export const convertAsync = createAsyncThunk(
   "currency/fetchCurrencyConvert",
-  async (amount: number, { getState }) => {
+  async (_, { getState }) => {
     const state: any = getState();
 
     const response = await fetchCurrencyConvert(
       state.currency.from.value,
       state.currency.to.value,
-      amount
+      state.currency.amount
     );
 
     return response.data;
@@ -60,10 +60,11 @@ export const currencySlice = createSlice({
     builder
       .addCase(convertAsync.pending, (state) => {
         state.loader = true;
+        state.result = {};
       })
       .addCase(convertAsync.fulfilled, (state, action) => {
-        state.loader = false;
         state.result = action.payload;
+        state.loader = false;
       })
       .addCase(convertAsync.rejected, (state) => {
         state.loader = false;
@@ -79,6 +80,7 @@ export const selectCurrency = (state: RootState) => ({
   to: state.currency.to,
   amount: state.currency.amount,
   loader: state.currency.loader,
+  result: state.currency.result,
 });
 
 export default currencySlice.reducer;

@@ -1,4 +1,4 @@
 export const routes = {
     home: "/",
-    exchangeRates: "exchange_rates"
+    exchangeRates: "/exchange_rates"
 };

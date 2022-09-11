@@ -16,3 +16,11 @@ export const fetchCurrencyConvert = (
       headers,
     }
   );
+
+export const fetchExchangeRates = (baseCurrency: string) =>
+  axios.get(
+    `https://api.apilayer.com/exchangerates_data/latest?base=${baseCurrency}`,
+    {
+      headers,
+    }
+  );

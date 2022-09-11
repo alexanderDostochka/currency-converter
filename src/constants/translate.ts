@@ -17,6 +17,13 @@ const translation = {
       }
     }
   },
+  exchangeRates: {
+    title: "Exchange rates for - ",
+    description: "Page with the latest exchange rates",
+    inputs: {
+      search: "To search enter UAH for example"
+    }
+  }
 };
 
 export default translation;

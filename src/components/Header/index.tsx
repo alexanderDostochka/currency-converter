@@ -4,12 +4,17 @@ import {
   convertAsync,
   selectCurrency,
 } from "../../redux/features/currencySlice";
+import { fetchExchangeRatesAsync } from "../../redux/features/exchangeRatesSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ReactComponent as LogoSVG } from "../../svg/logo.svg";
 import Select from "../Select";
 import Navigation from "./Navigation";
 
-const Header = () => {
+interface HeaderInterface {
+  isUpdateRates?: boolean;
+}
+
+const Header = ({ isUpdateRates = false }: HeaderInterface) => {
   const currentCurrency = useAppSelector(selectCurrency);
   const dispatch = useAppDispatch();
 
@@ -26,6 +31,7 @@ const Header = () => {
           onChange={(valueObject) => {
             dispatch(changeFrom(valueObject));
             dispatch(convertAsync());
+            if (isUpdateRates) dispatch(fetchExchangeRatesAsync());
           }}
           value={currentCurrency.from}
           defaultValue={currentCurrency.from}

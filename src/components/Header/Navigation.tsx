@@ -15,7 +15,7 @@ const Navigation = () => {
       <NavLink to={routes.home} className={activeClassName}>
         {translation.routes.home}
       </NavLink>
-      <NavLink to={routes.exchangeRates} className={activeClassName}>
+      <NavLink end to={routes.exchangeRates} className={activeClassName}>
         {translation.routes.exchangeRates}
       </NavLink>
     </nav>

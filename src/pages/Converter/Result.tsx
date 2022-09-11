@@ -3,7 +3,7 @@ interface ConvertResultInterface {
   to?: string;
   ratesFrom?: string;
   ratesTo?: string;
-  dateForm?: string
+  dateFrom?: string;
 }
 
 const ConvertResult = ({
@@ -11,8 +11,8 @@ const ConvertResult = ({
   to = "",
   ratesFrom = "",
   ratesTo = "",
-  dateFrom = ""
-}) => (
+  dateFrom = "",
+}: ConvertResultInterface) => (
   <div className="convert-result">
     <div className="result-from">{`${from} =`}</div>
     <div className="result-to">{`${to}`}</div>
@@ -20,9 +20,7 @@ const ConvertResult = ({
       <div>{ratesFrom}</div>
       <div>{ratesTo}</div>
     </div>
-    <div className="result-date">
-        {dateFrom}
-    </div>
+    <div className="result-date">{dateFrom}</div>
   </div>
 );
 

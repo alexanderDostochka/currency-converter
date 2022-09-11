@@ -1,4 +1,8 @@
 # Currency converter
+## Preview
+![alt text](https://files.fm/thumb_show.php?i=2rv8jnaz9)
+
+
 ## Available Scripts
 
 In the project directory, you can run:

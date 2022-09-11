@@ -2,7 +2,7 @@ header {
   width: 100%;
   height: 55px;
   top: 0;
-  background-color: transparent;
+  background-color: #354263;
   position: fixed;
   display: flex;
   align-items: center;
@@ -45,6 +45,12 @@ header {
           background: transparent;
           border-radius: $box_radius;
 
+          @include phone {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+
           &:hover {
             background: rgba($color_white, 0.12);
           }
@@ -56,7 +62,6 @@ header {
         }
       }
     }
-
 
     .input__control {
       background: transparent;

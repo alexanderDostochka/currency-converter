@@ -47,10 +47,18 @@
         padding: 50px 50px 20px 50px;
         display: flex;
 
+        @include phone {
+          display: block;
+        }
+
         .form-group {
           width: 100%;
           margin: 5px;
           position: relative;
+
+          @include phone {
+            margin-bottom: 15px
+          }
 
           .mini-loader {
             position: absolute;
@@ -71,6 +79,10 @@
           margin-bottom: 5px;
           margin-left: 5px;
           margin-right: 5px;
+
+          @include phone {
+            margin-bottom: 15px
+          }
 
           button {
             background-color: $color_white;

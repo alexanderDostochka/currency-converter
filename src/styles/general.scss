@@ -1,14 +1,42 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: $color_white;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: $color_white;
 }
 
-input, label {
-    color: $color_text;
+input,
+label {
+  color: $color_text;
+}
+
+.mini-loader {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.mini-loader:after {
+  content: " ";
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 3px solid $color_blue;
+  border-color: $color_blue transparent $color_blue transparent;
+  animation: min-loader 1.2s linear infinite;
+}
+
+@keyframes min-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

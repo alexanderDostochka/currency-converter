@@ -24,7 +24,7 @@ export const convertAsync = createAsyncThunk(
   "currency/fetchCurrencyConvert",
   async (amount: number, { getState }) => {
     const state: any = getState();
-    
+
     const response = await fetchCurrencyConvert(
       state.currency.from.value,
       state.currency.to.value,
@@ -78,6 +78,7 @@ export const selectCurrency = (state: RootState) => ({
   from: state.currency.from,
   to: state.currency.to,
   amount: state.currency.amount,
+  loader: state.currency.loader,
 });
 
 export default currencySlice.reducer;
